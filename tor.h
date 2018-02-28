@@ -11,7 +11,8 @@ class Tor
         Tor(const int xmax, const int ymax);
 
         Position getPosition() const;
-        int getLength();
+        int getDirection() const;
+        int getLength() const;
 
 
     private:

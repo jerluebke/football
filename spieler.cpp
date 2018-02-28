@@ -1,0 +1,7 @@
+#include "spieler.h"
+
+//////////////////////
+//  Konstuktoren    //
+//////////////////////
+
+Spieler()
