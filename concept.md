@@ -2,9 +2,19 @@
 ---
 _TODO:  
 `Feld` und `Ball` anpassen  
-Ablauf definieren_
+Ablauf definieren  
+
+Sind die Richtungen so richtig?_
 
 ---
+## Richtungen
+    +-------+
+    |   3   |
+    |2     4|
+    |   1   |
+    +-------+
+
+
 ## Schema
     +---------------------------+
     | class Name - Headerfile   |
@@ -62,6 +72,9 @@ Ablauf definieren_
     | Position getPosition()|
     | int getDirection()    |
     | int getLength()       |
+    | Tor operator=(Tor &t) |
+    |  // Compiler: Operator|
+    |  //  implizit gelöscht|
     +-----------------------+
     | const Position m_pos  |
     | const int m_direction |  
@@ -75,8 +88,9 @@ Ablauf definieren_
     | Ball(const int xmax), |
     |       const int ymax) |
     +-----------------------+
-    | void setPos()         |
-    | int getPos()          |
+    | void setPosX()        |
+    | void setPosY()        |
+    | Position getPos()     |
     +-----------------------+
     | const Position m_pos  |
     +-----------------------+
@@ -88,8 +102,9 @@ Ablauf definieren_
     | Spieler (const int xmax,  |
     |           const int ymax) |
     +---------------------------+
-    | int getPos()              |
+    | Position getPos()         |
     | void tuEtwas()            |
+    | char getLetzteAktion()    |
     +---------------------------+
     | Position m_pos            |
     | Tor m_tor                 |

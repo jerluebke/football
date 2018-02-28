@@ -12,24 +12,24 @@ class Spieler
         Spieler();
         Spieler(const int xmax, const int ymax);
 
-        int getPos() const;
+        Position getPos() const;
         void tuEtwas();
+        char getLetzteAktion() const;
 
 
     private:
         Position m_pos;
         Tor m_tor;
-        // Ball m_ball;
+        Ball m_ball;
 
         int m_schritte;
         int m_schuesse;
-        char m_action;  // Schritt oder Schuss? Für die Spielstatistik
+        char m_letzteAktion;  // Schritt oder Schuss? Für die Spielstatistik
+                              // t, s
 
-        bool atBall() const;
-        void getBallPos() const;
-        void getTorPos() const;
-        void kick();
-        void move();
+        bool m_amBall() const;
+        void m_schiess(int direction);
+        void m_geh(int direction);
 
 };
 

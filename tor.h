@@ -14,6 +14,12 @@ class Tor
         int getDirection() const;
         int getLength() const;
 
+        // Compiler-Meldung
+        // copy-Operator implizit gelöscht
+        // deswegen hier Neudeklaration
+        // TODO: Implementierung
+        Tor operator=(Tor &tor) const;
+
 
     private:
 
