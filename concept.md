@@ -1,63 +1,107 @@
 # Football
+---
+// TODO:
+// `Feld` und `Ball` anpassen
+// Ablauf definieren
 
-    +-----------------------+
-    | Field                 |
-    +=======================+
-    | const int xmax        |
-    | const int ymax        |
-    |                       |
-    | Goal                  |
-    | Ball                  |
-    | Player                |
-    +-----------------------+
-    | bool start            |
-    | void draw(bool start) |
-    | bool finished         |
-    |                       |
-    +-----------------------+
-
-
-    +-----------------------+
-    | Goal                  |
-    +=======================+
-    | const char direction  |  
-    | const int length      |
-    | const int postion     |
-    +-----------------------+
-    | getPosition           |
-    | getLength             |
-    +-----------------------+
-
-
-    +---------------+
-    | Ball          |
-    +===============+
-    | int xPos      |
-    | int yPos      |
-    +---------------+
-    | setPos        |
-    | getPos        |
-    +---------------+
-
-
+---
+## Schema
     +---------------------------+
-    | Player                    |
+    | class Name - Headerfile   |
     +===========================+
-    | int xPos                  |
-    | int yPos                  |
-    |                           |
-    | Goal                      |
-    | Ball                      |
-    |                           |
-    | char whichAction          |
-    | int steps                 |
-    | int shots                 |
+    | Konstruktor               |
     +---------------------------+
-    | bool atBall               |
-    | void getBallPos           |
-    | void getGoalPos           |
-    | void kick(char direction) |
-    | void move(char direction) |
+    | public                    |
+    +---------------------------+
+    | private                   |
+    +---------------------------+
+
+
+## Klassen
+
+    +-------------------------------+
+    | class Position - position.h   |
+    +===============================+
+    | Position(const int x,         |
+    |           const int y)        |
+    +-------------------------------+
+    | void set_posX(const int x)    |
+    | void set_PosY(const int y)    |
+    | int get_posX()                |
+    | int get_posY()                |
+    | bool operator==(Position &pos)|
+    +-------------------------------+
+    | int m_posX                    |
+    | int m_posY                    |
+    +-------------------------------+
+
+
+    +-----------------------+
+    | class Feld - feld.h   |
+    +=======================+
+    | Feld()                |
+    +-----------------------+
+    | void draw()           |
+    |                       |
+    +-----------------------+
+    | Position m_pos        |
+    | Tor m_tor             |
+    | Ball m_ball           |
+    | Spieler m_spieler     |
+    |                       |
+    | bool m_beendet()      |
+    +-----------------------+
+
+
+    +-----------------------+
+    | class Tor - tor.h     |
+    +=======================+
+    | Tor(const int xmax,   |
+    |       const int ymax) |
+    +-----------------------+
+    | Position getPosition()|
+    | int getDirection()    |
+    | int getLength()       |
+    +-----------------------+
+    | const Position m_pos  |
+    | const int m_direction |  
+    | const int m_length    |
+    +-----------------------+
+
+
+    +-----------------------+
+    | class Ball - ball.h   |
+    +=======================+
+    | Ball(const int xmax), |
+    |       const int ymax) |
+    +-----------------------+
+    | void setPos()         |
+    | int getPos()          |
+    +-----------------------+
+    | const Position m_pos  |
+    +-----------------------+
+
+
+    +---------------------------+
+    | class Spieler - spieler.h |
+    +===========================+
+    | Spieler (const int xmax,  |
+    |           const int ymax) |
+    +---------------------------+
+    | int getPos()              |
+    | void tuEtwas()            |
+    +---------------------------+
+    | Position m_pos            |
+    | Tor m_tor                 |
+    | Ball m_ball               |
+    |                           |
+    | int m_schritte            |
+    | int m_schuesse            |
+    | char m_letzteAktion       |
+    |                           |
+    | bool m_amBall()           |
+    | void m_schiess()          |
+    | void m_geh()              |
     +---------------------------+
 
 
@@ -74,7 +118,7 @@
                     +-------+
 
 
-# main procedure
+## Ablauf (main)
 ---
 *   init Field
     -   set random xmax, ymax
