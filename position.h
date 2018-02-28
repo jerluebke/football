@@ -1,6 +1,9 @@
 #ifndef POSITION_H
 #define POSITION_H
 
+// NOTIZ
+// ich habe `void get_position()` entfernt, da es mir redundant scheinte
+
 class Position {
 
     public:

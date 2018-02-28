@@ -13,6 +13,7 @@ class Spieler
         Spieler(const int xmax, const int ymax);
 
         int getPos() const;
+        void tuEtwas();
 
 
     private:

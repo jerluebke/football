@@ -1,8 +1,8 @@
 # Football
 ---
-// TODO:
-// `Feld` und `Ball` anpassen
-// Ablauf definieren
+_TODO:  
+`Feld` und `Ball` anpassen  
+Ablauf definieren_
 
 ---
 ## Schema
@@ -135,4 +135,4 @@
     -   retreive reference to Ball and Goal from Field
     -   set random Position
 ---
-*   
+_TODO: Ablauf definieren...__
