@@ -7,8 +7,8 @@ class Tor
 {
     public:
 
-        Tor(int xmax, int ymax);
-        ~Tor();
+        Tor();
+        Tor(const int xmax, const int ymax);
 
         Position getPosition() const;
         int getLength();
@@ -19,6 +19,7 @@ class Tor
         const Position m_pos;
         const int m_direction;
         const int m_length;
+
 };
 
 #endif
