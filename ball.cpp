@@ -29,3 +29,14 @@ void Ball::set_poxY(const int posY)
 {
     m_Position.set_posY(posY);
 }
+
+int Ball::get_posX() const
+{
+	return m_Position.get_posX();
+}
+
+int Ball::get_posY() const
+{
+	return m_Position.get_posY();
+}
+

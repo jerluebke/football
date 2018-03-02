@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "spieler.h"
 
 
@@ -8,20 +9,34 @@
 
 Spieler::Spieler(){}
 
-Spieler::Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball) : m_pos(xmax, ymax)
+Spieler::Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball) : 
+	m_pos(xmax, ymax)
 {
-	int m_xmax = xmax;
-	int m_ymax = ymax;
-	
+	m_xmax = xmax;
+	m_ymax = ymax;
+
 	m_ballErreicht = false;
     m_tor = tor;
     m_ball = ball;
-    m_ballPos = m_ball->get_pos();
-    m_torPos = m_tor->getPosition();
 
     m_setNaechsteTorPos = false;
 }
-
+// 
+// Spieler::Spieler(Position pos, Tor *tor, Ball *ball)
+// {
+//     m_pos = pos;
+// 
+// 
+//     m_ballErreicht = false;
+//     m_tor = tor;
+//     m_ball = ball;
+//     m_ballPos = m_ball->get_pos();
+//     m_torPos = m_tor->getPosition();
+// 
+//     m_setNaechsteTorPos = false;
+// 
+// }
+// 
 
 //////////////////////////
 //  Public methodes     //
@@ -141,13 +156,13 @@ void Spieler::m_geh(int direction)
 
 void Spieler::m_geheZuBall()
 {
-    if (m_pos.get_posX() < m_ballPos.get_posX())
+    if (m_pos.get_posX() < m_ball->get_posX())
         m_geh(4);
-    else if (m_pos.get_posX() > m_ballPos.get_posX())
+    else if (m_pos.get_posX() > m_ball->get_posX())
         m_geh(2);
-    else if (m_pos.get_posY() < m_ballPos.get_posY())
+    else if (m_pos.get_posY() < m_ball->get_posY())
         m_geh(1);
-    else if (m_pos.get_posY() > m_ballPos.get_posY())
+    else if (m_pos.get_posY() > m_ball->get_posY())
         m_geh(3);
 }
 
@@ -166,9 +181,9 @@ void Spieler::m_geheZumTor()
     else if (m_pos.get_posX() > m_naechsteTorPos.get_posX())
         direction = 2;
     else if (m_pos.get_posY() < m_naechsteTorPos.get_posY())
-        direction = 1;
-    else if (m_pos.get_posY() > m_naechsteTorPos.get_posY())
         direction = 3;
+    else if (m_pos.get_posY() > m_naechsteTorPos.get_posY())
+        direction = 1;
 
     if (m_amBall())
         m_schiess(direction);
@@ -179,9 +194,10 @@ void Spieler::m_geheZumTor()
 
 Position Spieler::m_getNaechsteTorPos()
 {
-	double MAXDISTANZ = sqrt(m_xmax*m_xmax + m_ymax * m_ymax);
-    for (Position &currentPos : m_torPos)
-        if (m_pos.abstandQuadrat(currentPos) < m_pos.abstandQuadrat(naechste))
+    Position naechste;
+	double MAXDISTANZ = m_xmax*m_xmax + m_ymax * m_ymax +1;
+    for (Position &currentPos : m_tor->getPosition())
+        if (m_pos.abstandQuadrat(currentPos) < MAXDISTANZ)
             naechste = currentPos;
     return naechste;
 }

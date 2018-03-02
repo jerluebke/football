@@ -29,15 +29,14 @@ private:
 	 Ball m_ball;
 	 Spieler m_spieler;
 	 Tor m_tor;
-     std::vector<Position> m_torPos;
-     Position m_ballPos;
-     Position m_spielerPos;
+ 
 
+     void updateSpielfeld();
      bool m_beendet();
      void m_beendeSpiel();
 
-     unsigned int m_index(Position &pos);
+     unsigned int m_index(const Position &pos);
 
-     // std::chrono::seconds m_oneSecondDelay(1000); 
+     // std::chrono::seconds m_oneSecondDelay(1000);
 
 };

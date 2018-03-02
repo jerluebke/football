@@ -1,6 +1,7 @@
 #include "tor.h"
 #include <stdlib.h>
 #include <time.h>
+#include <algorithm>
 
 
 //////////////////////
@@ -23,44 +24,41 @@ Tor::Tor(int xmax,  int ymax)
     // da das Tor nicht nur eine Position einnimmt, kann es hilfreich sein,
     // diese Positionen in einem Vektor zu speichern
 
-    srand(time(NULL));
     const int direction = rand() % 4 + 1;
     Position startPos;
     int location;
     int length;
+	int start, stop;
     switch (direction)
     {
-        case 1 : startPos.set_posY(ymax);
-                 location = m_setLocation(ymax);
-                 length = m_setLength(ymax, location);
+        case 1 : startPos.set_posY(ymax-1);
+                 start = m_setLocation(xmax);
+				 stop = m_setLocation(xmax);
+				 length = static_cast<int> (abs(start-stop))+1;
+				 location = std::min(start, stop);
                  break;
         case 2 : startPos.set_posX(0);
-                 location = m_setLocation(xmax);
-                 length = m_setLength(xmax, location);
-                 break;
+			start = m_setLocation(ymax);
+			stop = m_setLocation(ymax);
+			length = static_cast<int> (abs(start - stop)) + 1;
+			location = std::min(start, stop);
+			break;
         case 3 : startPos.set_posY(0);
-                 location = m_setLocation(ymax);
-                 length = m_setLength(ymax, location);
-                 break;
-        case 4 : startPos.set_posX(xmax);
-                 location = m_setLocation(xmax);
-                 length = m_setLength(xmax, location);
-                 break;
+			start = m_setLocation(xmax);
+			stop = m_setLocation(xmax);
+			length = static_cast<int> (abs(start - stop)) + 1;
+			location = std::min(start, stop);			
+			break;
+        case 4 : startPos.set_posX(xmax-1);
+			start = m_setLocation(ymax);
+			stop = m_setLocation(ymax);
+			length = static_cast<int> (abs(start - stop)) + 1;
+			location = std::min(start, stop);
+			break;
     }
 
-    for (int i = 0; i <= length; i++)
+    for (int i = 0; i < length; i++)
     {
-       /* switch (direction % 2)
-        {
-            case 0 : Position posY;
-                     posY.set_pos(startPos.get_posX(), location+i);
-                     m_pos.push_back(posY);
-                     break;
-            case 1 : Position posX;
-                     posX.set_pos(location+i, startPos.get_posX());
-                     m_pos.push_back(posX);
-                     break;
-        }*/
 
 		if (direction % 2 == 0) {
 			Position posY;
@@ -70,7 +68,7 @@ Tor::Tor(int xmax,  int ymax)
 		}
 		else {
 			Position posX;
-			posX.set_pos(location + i, startPos.get_posX());
+			posX.set_pos(location + i, startPos.get_posY());
 			m_pos.push_back(posX);
 		}
     }
@@ -84,12 +82,11 @@ std::vector<Position> Tor::getPosition() const
 
 int Tor::m_setLocation(const int bound)
 {
-    srand(time(NULL));
     return (rand() % bound);
 }
 
 int Tor::m_setLength(const int globalBound, const int location)
 {
-    srand(time(NULL));
-    return (rand() % (globalBound - location));
+   
+	return (rand() % (globalBound  - location))+1;
 }

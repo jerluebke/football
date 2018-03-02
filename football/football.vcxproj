@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{6AE34F4D-98EE-43A5-BE65-DB0C641B4871}</ProjectGuid>
+    <ProjectGuid>{E1D1F4F1-648B-4F86-B9C2-82489D9660B5}</ProjectGuid>
     <RootNamespace>football</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -115,19 +115,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ball.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="position.cpp" />
-    <ClCompile Include="spieler.cpp" />
-    <ClCompile Include="tor.cpp" />
-    <ClCompile Include="spielfeld.cpp" />
+    <ClInclude Include="..\ball.h" />
+    <ClInclude Include="..\position.h" />
+    <ClInclude Include="..\spieler.h" />
+    <ClInclude Include="..\spielfeld.h" />
+    <ClInclude Include="..\tor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ball.h" />
-    <ClInclude Include="position.h" />
-    <ClInclude Include="spieler.h" />
-    <ClInclude Include="tor.h" />
-    <ClInclude Include="spielfeld.h" />
+    <ClCompile Include="..\ball.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\position.cpp" />
+    <ClCompile Include="..\spieler.cpp" />
+    <ClCompile Include="..\spielfeld.cpp" />
+    <ClCompile Include="..\tor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

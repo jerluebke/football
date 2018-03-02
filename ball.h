@@ -16,6 +16,8 @@ public:
     void set_poxY(const int posY);
 
     Position get_pos() const;
+	int get_posX() const;
+	int get_posY() const;
 
 
 private:

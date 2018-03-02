@@ -1,14 +1,13 @@
 #include "position.h"
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
 
 Position::Position() {}
 
 Position::Position(const int rangeX, const int rangeY)
 {
-	srand(time(NULL));
-	m_posX = rand() % rangeX + 1; //random position between 1 and rangeX
-	m_posY = rand() % rangeY + 1;
+	// srand(time(NULL));
+	m_posX = std::rand() % rangeX; //random position between 1 and rangeX
+	m_posY = std::rand() % rangeY;
 }
 
 

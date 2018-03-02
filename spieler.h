@@ -25,8 +25,6 @@ class Spieler
         Position m_pos;
         Tor* m_tor;
         Ball* m_ball;
-        Position m_ballPos;
-        std::vector<Position> m_torPos;
         Position m_naechsteTorPos;
         bool m_setNaechsteTorPos;
 
@@ -41,6 +39,8 @@ class Spieler
         void m_geheZuBall();
         void m_geheZumTor();
         Position m_getNaechsteTorPos();
+
+        int m_xmax, m_ymax;
 
 };
 
