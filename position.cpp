@@ -44,3 +44,11 @@ bool Position::operator==(const Position &pos) const
 int Position::get_posX() const { return m_posX; }
 
 int Position::get_posY() const { return m_posY; }
+
+
+int Position::abstandQuadrat(const Position &pos) const
+{
+    const int diffX = m_posX - pos.get_posX();
+    const int diffY = m_posY - pos.get_posY();
+    return ( diffX*diffX + diffY*diffY );
+}

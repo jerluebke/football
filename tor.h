@@ -18,9 +18,12 @@ class Tor
 
     private:
 
-        const std::vector<Position> m_pos;
+        std::vector<Position> m_pos;
         // const int m_direction;
         // const int m_length;
+
+        int m_setLocation(const int bound);
+        int m_setLength(const int globalBound, const int location);
 
 };
 

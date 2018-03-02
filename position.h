@@ -20,6 +20,8 @@ class Position {
 
         bool operator==( const Position &pos) const;
 
+        int abstandQuadrat(const Position &pos) const;
+
 
     private:
 

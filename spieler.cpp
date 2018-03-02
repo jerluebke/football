@@ -14,6 +14,10 @@ Spieler::Spieler(const int xmax, const int ymax, Tor &tor, Ball &ball)
     Position m_pos(xmax, ymax);
     m_tor = &tor;
     m_ball = &ball;
+    m_ballPos = m_ball->get_pos();
+    m_torPos = m_tor->getPosition();
+
+    m_setNaechsteTorPos = false;
 }
 
 
@@ -28,9 +32,6 @@ Position Spieler::getPos() const
 
 void Spieler::tuEtwas()
 {
-    std::cerr << "noch nicht implementiert!" << std::endl;
-    return;
-
     if (!m_amBall())
         m_geheZuBall();
     else
@@ -41,9 +42,15 @@ void Spieler::tuEtwas()
     }
 }
 
-char Spieler::getLetzteAktion() const
+
+int Spieler::getSchritte() const
 {
-    return m_letzteAktion;
+    return m_schritte;
+}
+
+int Spieler::getSchuesse() const
+{
+    return m_schuesse;
 }
 
 
@@ -60,9 +67,7 @@ char Spieler::getLetzteAktion() const
 
 bool Spieler::m_amBall() const
 {
-    if (m_ball->get_pos() == this->m_pos)
-        return true;
-    return false;
+    return (m_ball->get_pos() == this->m_pos);
 }
 
 
@@ -84,9 +89,9 @@ void Spieler::m_schiess(int direction)
         case 4: m_ball->set_posX(x+1);
                 break;
 
-        default: std::cerr << "Bedingung: 0 < direction < 5"
-                 << " - Etwas ist schiefgelaufen..." << std::endl;
-                 break;
+        // default: std::cerr << "Bedingung: 0 < direction < 5"
+        //          << " - Etwas ist schiefgelaufen..." << std::endl;
+        //          break;
     }
     std::cout << "Schuss!" << std::endl;
     m_schuesse++;
@@ -112,9 +117,9 @@ void Spieler::m_geh(int direction)
         case 4: m_pos.set_posX(x+1);
                 break;
 
-        default: std::cerr << "Bedingung: 0 < direction < 5"
-                 << " - Etwas ist schiefgelaufen..." << std::endl;
-                 break;
+        // default: std::cerr << "Bedingung: 0 < direction < 5"
+        //          << " - Etwas ist schiefgelaufen..." << std::endl;
+        //          break;
     }
     std::cout << "Schritt..." << std::endl;
     m_schritte++;
@@ -133,7 +138,48 @@ void Spieler::m_geh(int direction)
 
 
 void Spieler::m_geheZuBall()
-{}
+{
+    if (m_pos.get_posX() < m_ballPos.get_posX())
+        m_geh(4);
+    else if (m_pos.get_posX() > m_ballPos.get_posX())
+        m_geh(2);
+    else if (m_pos.get_posY() < m_ballPos.get_posY())
+        m_geh(1);
+    else if (m_pos.get_posY() > m_ballPos.get_posY())
+        m_geh(3);
+}
+
 
 void Spieler::m_geheZumTor()
-{}
+{
+    if (!m_setNaechsteTorPos)
+    {
+        m_naechsteTorPos = m_getNaechsteTorPos();
+        m_setNaechsteTorPos = true;
+    }
+
+    int direction;
+    if (m_pos.get_posX() < m_naechsteTorPos.get_posX())
+        direction = 4;
+    else if (m_pos.get_posX() > m_naechsteTorPos.get_posX())
+        direction = 2;
+    else if (m_pos.get_posY() < m_naechsteTorPos.get_posY())
+        direction = 1;
+    else if (m_pos.get_posY() > m_naechsteTorPos.get_posY())
+        direction = 3;
+
+    if (m_amBall())
+        m_schiess(direction);
+    else
+        m_geh(direction);
+
+}
+
+Position Spieler::m_getNaechsteTorPos()
+{
+    Position naechste = m_torPos[0];
+    for (Position currentPos : m_torPos)
+        if (m_pos.abstandQuadrat(currentPos) < m_pos.abstandQuadrat(naechste))
+            naechste = currentPos;
+    return naechste;
+}
