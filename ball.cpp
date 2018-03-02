@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+Ball::Ball() {}
+
 Ball::Ball(const int feldlaenge, const int feldbreite)
 {
     Position m_Position(feldlaenge, feldbreite);

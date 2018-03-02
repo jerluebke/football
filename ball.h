@@ -5,6 +5,7 @@ class Ball {
 
 public:
 
+    Ball();
 	Ball(const int feldlaenge, const int feldbreite);
 
 	void set_pos(const Position pos);
