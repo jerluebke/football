@@ -36,44 +36,6 @@ int Spielfeld::get_breite() const { return m_breite; }
 
 int Spielfeld::get_laenge() const { return m_laenge; }
 
-//
-// void Spielfeld::print_Spielfeld() {
-//
-//     for (int i = 0; i < m_laenge; ++i) {
-//         for (int j = 0; j < m_breite; ++j)
-//         {
-//             Position draw(i, j);
-//             if (draw == ball.get_pos())
-//             {
-//                 std::cout << 'o';
-//             }
-//             else if (draw == m_SpielerPosition) {
-//
-//                 std::cout << 'i';
-//             }
-//             else if (tor.get_direction() % 2 == 0 && i >= tor.get_posX() && i <= tor.get_posX() + tor.get_) {
-//
-//                 std::cout << 'x';
-//             }
-//             else if (m_TorLage % 2 != 0 && j >= m_TorPosition.get_posX() && j <= m_TorPosition.get_posX() + m_TorLänge) {
-//
-//                 std::cout << 'x';
-//             }
-//             else {
-//
-//                 std::cout << '-';
-//             }
-//
-//         }
-//     }
-//
-//
-//
-//
-//
-// }
-//
-
 
 void Spielfeld::printSpielfeld()
 {
@@ -103,13 +65,13 @@ void Spielfeld::macheZug()
     m_beendeSpiel();
 }
 
-void Spielfeld::m_beendeSpiel() const;
+void Spielfeld::m_beendeSpiel() const
 {
     system("cls");
     std::cout << "TOR!\n\n";
     std::cout << "Statistik:" << "\n";
     std::cout << "\tSchritte: " << m_spieler.getSchritte();
-    std::cout << "\tSchusse: " << m_spieler.getSchuesse();
+    std::cout << "\tSchuesse: " << m_spieler.getSchuesse();
     std::cout << std::endl;
 }
 

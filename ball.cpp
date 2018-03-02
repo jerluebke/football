@@ -5,7 +5,7 @@
 
 Ball::Ball() {}
 
-Ball::Ball(const int feldlaenge, const int feldbreite)
+Ball::Ball(int feldlaenge, int feldbreite)
 {
     Position m_Position(feldlaenge, feldbreite);
 }

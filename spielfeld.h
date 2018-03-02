@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <chrono>
 #include "position.h"
@@ -38,6 +40,6 @@ private:
 
      unsigned int m_index(Position &pos);
 
-     std::chrono::seconds m_oneSecondDelay(1000);
+     // std::chrono::seconds m_oneSecondDelay(1000);
 
 };
