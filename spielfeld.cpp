@@ -6,18 +6,12 @@
 #include "ball.h"
 
 
-Spielfeld::Spielfeld() : m_breite(0), m_laenge(0), m_feld(nullptr)
+Spielfeld::Spielfeld(int breite, int laenge) : m_breite(breite), m_laenge(laenge), m_feld(nullptr) , m_ball(m_breite, m_laenge),
+m_tor(m_breite, m_laenge), m_spieler(m_breite, m_laenge, &m_tor, &m_ball)
 {
-	srand(time(NULL));
-	m_breite = rand() % 10 + 1;
-	m_laenge = rand() % 10 + 1;
-
+	
     m_feld = new unsigned char[m_breite * m_laenge];
     memset (m_feld, '-', m_breite*m_laenge);
-
-    Ball m_ball(m_breite, m_laenge);
-    Tor m_tor(m_breite, m_laenge);
-    Spieler m_spieler(m_breite, m_laenge, m_tor, m_ball);
 
     m_torPos = m_tor.getPosition();
     m_ballPos = m_ball.get_pos();
@@ -25,7 +19,7 @@ Spielfeld::Spielfeld() : m_breite(0), m_laenge(0), m_feld(nullptr)
 
     m_feld[m_index(m_ballPos)] = 'o';
     m_feld[m_index(m_spielerPos)] = 'I';
-    for (Position pos : m_torPos)
+    for (Position &pos : m_torPos)
         m_feld[m_index(pos)] = '#';
 
     printSpielfeld();
@@ -35,6 +29,44 @@ Spielfeld::Spielfeld() : m_breite(0), m_laenge(0), m_feld(nullptr)
 int Spielfeld::get_breite() const { return m_breite; }
 
 int Spielfeld::get_laenge() const { return m_laenge; }
+
+// 
+// void Spielfeld::print_Spielfeld() {
+// 
+//     for (int i = 0; i < m_laenge; ++i) {
+//         for (int j = 0; j < m_breite; ++j)
+//         {
+//             Position draw(i, j);
+//             if (draw == ball.get_pos())
+//             {
+//                 std::cout << 'o';
+//             }
+//             else if (draw == m_SpielerPosition) {
+// 
+//                 std::cout << 'i';
+//             }
+//             else if (tor.get_direction() % 2 == 0 && i >= tor.get_posX() && i <= tor.get_posX() + tor.get_) {
+// 
+//                 std::cout << 'x';
+//             }
+//             else if (m_TorLage % 2 != 0 && j >= m_TorPosition.get_posX() && j <= m_TorPosition.get_posX() + m_TorLänge) {
+// 
+//                 std::cout << 'x';
+//             }
+//             else {
+// 
+//                 std::cout << '-';
+//             }
+// 
+//         }
+//     }
+// 
+// 
+// 
+// 
+// 
+// }
+// 
 
 
 void Spielfeld::printSpielfeld()
@@ -51,37 +83,32 @@ void Spielfeld::printSpielfeld()
 }
 
 
-void Spielfeld::macheZug()
+void Spielfeld::macheZug() 
 {
-    while (!m_beendet())
+    if (m_beendet())
     {
-        // system("cls");
-        m_spieler.tuEtwas();
-        printSpielfeld();
-
-        // std::this_thread::sleep_for(m_oneSecondDelay);
+        m_beendeSpiel();
+        return;
     }
-
-    m_beendeSpiel();
-}
-
-void Spielfeld::m_beendeSpiel() const
-{
     system("cls");
-    std::cout << "TOR!\n\n";
-    std::cout << "Statistik:" << "\n";
-    std::cout << "\tSchritte: " << m_spieler.getSchritte();
-    std::cout << "\tSchuesse: " << m_spieler.getSchuesse();
-    std::cout << std::endl;
+    m_spieler.tuEtwas();
+    printSpielfeld();
+
+   // std::this_thread::sleep_for(m_oneSecondDelay);
+
 }
 
 bool Spielfeld::m_beendet()
 {
-    for (Position torPos : m_torPos)
-        if (m_ball.get_pos() == torPos)
-            return true;
-    return false;
+	return false;
 }
+
+void Spielfeld::m_beendeSpiel()
+{
+    system("cls");
+	std::cout << "Statistik:" << std::endl;
+}
+
 
 unsigned int Spielfeld::m_index(Position &pos)
 {

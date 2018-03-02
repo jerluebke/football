@@ -8,12 +8,14 @@
 
 Spieler::Spieler(){}
 
-Spieler::Spieler(const int xmax, const int ymax, Tor &tor, Ball &ball)
+Spieler::Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball) : m_pos(xmax, ymax)
 {
-    m_ballErreicht = false;
-    Position m_pos(xmax, ymax);
-    m_tor = &tor;
-    m_ball = &ball;
+	int m_xmax = xmax;
+	int m_ymax = ymax;
+	
+	m_ballErreicht = false;
+    m_tor = tor;
+    m_ball = ball;
     m_ballPos = m_ball->get_pos();
     m_torPos = m_tor->getPosition();
 
@@ -177,8 +179,8 @@ void Spieler::m_geheZumTor()
 
 Position Spieler::m_getNaechsteTorPos()
 {
-    Position naechste = m_torPos[0];
-    for (Position currentPos : m_torPos)
+	double MAXDISTANZ = sqrt(m_xmax*m_xmax + m_ymax * m_ymax);
+    for (Position &currentPos : m_torPos)
         if (m_pos.abstandQuadrat(currentPos) < m_pos.abstandQuadrat(naechste))
             naechste = currentPos;
     return naechste;

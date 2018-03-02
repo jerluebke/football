@@ -1,15 +1,16 @@
+#pragma once
+
 #include <vector>
 #include "position.h"
 
-#ifndef TOR_H
-#define TOR_H
+
 
 class Tor
 {
     public:
 
-        Tor();
-        Tor(const int xmax, const int ymax);
+		Tor(){}
+        Tor(int xmax, int ymax);
 
         std::vector<Position> getPosition() const;
         // int getDirection() const;
@@ -27,4 +28,4 @@ class Tor
 
 };
 
-#endif
+

@@ -1,13 +1,13 @@
 #include "ball.h"
-#include <stdio.h>   //for random number
-#include <stdlib.h>
-#include <time.h>
+#include <cstdio>   //for random number
+#include <cstdlib>
+#include <ctime>
 
 Ball::Ball() {}
 
-Ball::Ball(int feldlaenge, int feldbreite)
+Ball::Ball(int feldlaenge, int feldbreite): m_Position(feldlaenge, feldbreite)
 {
-    Position m_Position(feldlaenge, feldbreite);
+
 }
 
 Position Ball::get_pos() const

@@ -7,7 +7,8 @@
 //  Konstruktor     //
 //////////////////////
 
-Tor::Tor(const int xmax, const int ymax)
+
+Tor::Tor(int xmax,  int ymax)
 {
     // setze eine zufällige Seite
     // +-------+
@@ -49,31 +50,29 @@ Tor::Tor(const int xmax, const int ymax)
 
     for (int i = 0; i <= length; i++)
     {
-        // switch (direction % 2)
-        // {
-        //     case 0 : Position posY;
-        //              posY.set_pos(startPos.get_posX(), location+i);
-        //              m_pos.push_back(posY);
-        //              break;
-        //     case 1 : Position posX;
-        //              posX.set_pos(location+i, startPos.get_posX());
-        //              m_pos.push_back(posX);
-        //              break;
-        // }
-
-        if (direction % 2 == 0)
+       /* switch (direction % 2)
         {
-            Position posY;
-            posY.set_pos(startPos.get_posX(), location+i);
-            m_pos.push_back(posY);
-        }
-        else
-        {
-            Position posX;
-            posX.set_pos(location+i, startPos.get_posX());
-            m_pos.push_back(posX);
-        }
+            case 0 : Position posY;
+                     posY.set_pos(startPos.get_posX(), location+i);
+                     m_pos.push_back(posY);
+                     break;
+            case 1 : Position posX;
+                     posX.set_pos(location+i, startPos.get_posX());
+                     m_pos.push_back(posX);
+                     break;
+        }*/
 
+		if (direction % 2 == 0) {
+			Position posY;
+			posY.set_pos(startPos.get_posX(), location + i);
+			m_pos.push_back(posY);
+
+		}
+		else {
+			Position posX;
+			posX.set_pos(location + i, startPos.get_posX());
+			m_pos.push_back(posX);
+		}
     }
 }
 

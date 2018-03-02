@@ -1,16 +1,16 @@
+#pragma once
+
 #include "position.h"
 #include "tor.h"
 #include "ball.h"
 
-#ifndef SPIELER_H
-#define SPIELER_H
 
 class Spieler
 {
     public:
 
         Spieler();
-        Spieler(const int xmax, const int ymax, Tor &tor, Ball &ball);
+        Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball);
 
         Position getPos() const;
         void tuEtwas();
@@ -44,4 +44,3 @@ class Spieler
 
 };
 
-#endif

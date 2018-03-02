@@ -1,5 +1,3 @@
-#pragma once
-
 #include <iostream>
 #include <chrono>
 #include "position.h"
@@ -12,7 +10,7 @@ class Spielfeld
 
 public:
 
-	Spielfeld();
+	Spielfeld(int breite, int laenge);
     ~Spielfeld() { delete[] m_feld; }
 
 	void printSpielfeld();
@@ -36,10 +34,10 @@ private:
      Position m_spielerPos;
 
      bool m_beendet();
-     void m_beendeSpiel() const;
+     void m_beendeSpiel();
 
      unsigned int m_index(Position &pos);
 
-     // std::chrono::seconds m_oneSecondDelay(1000);
+     // std::chrono::seconds m_oneSecondDelay(1000); 
 
 };

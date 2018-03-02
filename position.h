@@ -1,5 +1,4 @@
-#ifndef POSITION_H
-#define POSITION_H
+#pragma once
 
 // NOTIZ
 // ich habe `void get_position()` entfernt, da es mir redundant schien
@@ -30,4 +29,4 @@ class Position {
 
 };
 
-#endif
+
