@@ -17,7 +17,7 @@ public:
 
 	int get_breite() const;
 	int get_laenge() const;
-    void macheZug() const;
+    void macheZug();
 
 private:
 
@@ -34,7 +34,7 @@ private:
      Position m_spielerPos;
 
      bool m_beendet();
-     void m_beendeSpiel();
+     void m_beendeSpiel() const;
 
      unsigned int m_index(Position &pos);
 

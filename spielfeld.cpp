@@ -36,9 +36,9 @@ int Spielfeld::get_breite() const { return m_breite; }
 
 int Spielfeld::get_laenge() const { return m_laenge; }
 
-// 
+//
 // void Spielfeld::print_Spielfeld() {
-// 
+//
 //     for (int i = 0; i < m_laenge; ++i) {
 //         for (int j = 0; j < m_breite; ++j)
 //         {
@@ -48,31 +48,31 @@ int Spielfeld::get_laenge() const { return m_laenge; }
 //                 std::cout << 'o';
 //             }
 //             else if (draw == m_SpielerPosition) {
-// 
+//
 //                 std::cout << 'i';
 //             }
 //             else if (tor.get_direction() % 2 == 0 && i >= tor.get_posX() && i <= tor.get_posX() + tor.get_) {
-// 
+//
 //                 std::cout << 'x';
 //             }
 //             else if (m_TorLage % 2 != 0 && j >= m_TorPosition.get_posX() && j <= m_TorPosition.get_posX() + m_TorLänge) {
-// 
+//
 //                 std::cout << 'x';
 //             }
 //             else {
-// 
+//
 //                 std::cout << '-';
 //             }
-// 
+//
 //         }
 //     }
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
 // }
-// 
+//
 
 
 void Spielfeld::printSpielfeld()
@@ -91,25 +91,35 @@ void Spielfeld::printSpielfeld()
 
 void Spielfeld::macheZug()
 {
-    if (m_beendet())
+    while (!m_beendet())
     {
-        m_beendeSpiel();
-        return;
+        // system("cls");
+        m_spieler.tuEtwas();
+        printSpielfeld();
+
+        // std::this_thread::sleep_for(m_oneSecondDelay);
     }
-    system("cls");
-    m_spieler.tuEtwas();
-    printSpielfeld();
 
-    std::this_thread::sleep_for(m_oneSecondDelay);
-
+    m_beendeSpiel();
 }
 
-void Spielfeld:m_beendeSpiel();
+void Spielfeld::m_beendeSpiel() const;
 {
     system("cls");
-    std:::cout << "Statistik:" << ;
+    std::cout << "TOR!\n\n";
+    std::cout << "Statistik:" << "\n";
+    std::cout << "\tSchritte: " << m_spieler.getSchritte();
+    std::cout << "\tSchusse: " << m_spieler.getSchuesse();
+    std::cout << std::endl;
 }
 
+bool Spielfeld::m_beendet()
+{
+    for (Position torPos : m_torPos)
+        if (m_ball.get_pos() == torPos)
+            return true;
+    return false;
+}
 
 unsigned int Spielfeld::m_index(Position &pos)
 {
