@@ -1,11 +1,12 @@
 # Football
 ---
-_TODO:  
-`Feld` und `Ball` anpassen  
-Ablauf definieren  
-
-Sind die Richtungen so richtig?_
-
+_
+TODO:  
+Tor: Konstruktor
+Spieler: `m_geheZuBall` und `m_geheZuTor`
+Spielfeld: ...
+main
+_
 ---
 ## Richtungen
     +-------+
@@ -35,6 +36,7 @@ Sind die Richtungen so richtig?_
     | Position(const int x,         |
     |           const int y)        |
     +-------------------------------+
+    | void set_pos(x, y)            |
     | void set_posX(const int x)    |
     | void set_PosY(const int y)    |
     | int get_posX()                |
@@ -52,9 +54,12 @@ Sind die Richtungen so richtig?_
     | Feld()                |
     +-----------------------+
     | void draw()           |
-    |                       |
+    | int get_breite()      |
+    | int get_laenge()      |
     +-----------------------+
-    | Position m_pos        |
+    | int breite            |
+    | int laenge            |
+    |                       |
     | Tor m_tor             |
     | Ball m_ball           |
     | Spieler m_spieler     |
@@ -72,9 +77,6 @@ Sind die Richtungen so richtig?_
     | Position getPosition()|
     | int getDirection()    |
     | int getLength()       |
-    | Tor operator=(Tor &t) |
-    |  // Compiler: Operator|
-    |  //  implizit gelöscht|
     +-----------------------+
     | const Position m_pos  |
     | const int m_direction |  

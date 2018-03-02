@@ -1,8 +1,8 @@
-#include<iostream>
-#include "Position.h"
-#include "Ball.h"
-#include "Tor.h"
-#include "Spieler.h"
+#include <iostream>
+#include "position.h"
+#include "ball.h"
+#include "tor.h"
+#include "spieler.h"
 
 class Spielfeld {
 
@@ -20,9 +20,10 @@ private:
 	 int m_breite = 0;
 	 int m_laenge = 0;
 
-	 Ball ball(1,1);
-	 Spieler spieler(1, 1);
-	 Tor tor(1, 1);
+	 Ball ball;
+	 Spieler spieler;
+	 Tor tor;
 
+     bool m_beendet();
 
 };

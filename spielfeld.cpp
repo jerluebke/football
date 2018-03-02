@@ -1,26 +1,24 @@
-#include "Spielfeld.h"
-#include<stdio.h> < //for random number
-#include<stdlib.h>
-#include<time.h>
-#include "Ball.h"
+#include <stdio.h>   //for random number
+#include <stdlib.h>
+#include <time.h>
+#include "spielfeld.h"
+#include "ball.h"
 
 
-Spielfeld::Spielfeld() {
-
+Spielfeld::Spielfeld()
+{
 	srand(time(NULL));
 	m_breite = rand() % 10 + 1;
 	m_laenge = rand() % 10 + 1;
 
+    Ball m_ball(m_breite, m_laenge);
+    Tor m_tor(m_breite, m_laenge);
+    Spieler m_spieler(m_breite, m_laenge, m_tor, m_ball);
 }
 
-int Spielfeld::get_breite() const {
+int Spielfeld::get_breite() const { return m_breite; }
 
-	return m_breite;
-}
-int Spielfeld::get_laenge() const {
-
-	return m_laenge;
-}
+int Spielfeld::get_laenge() const { return m_laenge; }
 
 
 void Spielfeld::print_Spielfeld() {

@@ -1,3 +1,4 @@
+#include <vector>
 #include "position.h"
 
 #ifndef TOR_H
@@ -10,22 +11,16 @@ class Tor
         Tor();
         Tor(const int xmax, const int ymax);
 
-        Position getPosition() const;
-        int getDirection() const;
-        int getLength() const;
-
-        // Compiler-Meldung
-        // copy-Operator implizit gelöscht
-        // deswegen hier Neudeklaration
-        // TODO: Implementierung
-        Tor operator=(Tor &tor) const;
+        std::vector<Position> getPosition() const;
+        // int getDirection() const;
+        // int getLength() const;
 
 
     private:
 
-        const Position m_pos;
-        const int m_direction;
-        const int m_length;
+        const std::vector<Position> m_pos;
+        // const int m_direction;
+        // const int m_length;
 
 };
 

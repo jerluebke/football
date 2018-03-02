@@ -1,8 +1,8 @@
 #include <iostream>
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include "Spielfeld.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "spielfeld.h"
 
 
 int main() {

@@ -2,7 +2,7 @@
 #define POSITION_H
 
 // NOTIZ
-// ich habe `void get_position()` entfernt, da es mir redundant scheinte
+// ich habe `void get_position()` entfernt, da es mir redundant schien
 
 class Position {
 
@@ -11,6 +11,7 @@ class Position {
         Position();
         Position(const int posX, const int posY);
 
+        void set_pos(const int posX, const int posY);
         void set_posX(const int posX);
         void set_posY(const int posY);
 
