@@ -20,9 +20,6 @@ Tor::Tor(int xmax,  int ymax)
     //
     // setze zufällige Position auf der erhaltenen Seite
     // setze zufällige Länge des Tores beschränkt durch dir Länge des Feldes
-    //
-    // da das Tor nicht nur eine Position einnimmt, kann es hilfreich sein,
-    // diese Positionen in einem Vektor zu speichern
 
     const int direction = rand() % 4 + 1;
     Position startPos;
@@ -47,7 +44,7 @@ Tor::Tor(int xmax,  int ymax)
 			start = m_setLocation(xmax);
 			stop = m_setLocation(xmax);
 			length = static_cast<int> (abs(start - stop)) + 1;
-			location = std::min(start, stop);			
+			location = std::min(start, stop);
 			break;
         case 4 : startPos.set_posX(xmax-1);
 			start = m_setLocation(ymax);
@@ -87,6 +84,6 @@ int Tor::m_setLocation(const int bound)
 
 int Tor::m_setLength(const int globalBound, const int location)
 {
-   
+
 	return (rand() % (globalBound  - location))+1;
 }
