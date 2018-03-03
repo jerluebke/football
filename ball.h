@@ -10,7 +10,7 @@ public:
 	Position get_pos() const;
 	void set_pos(const Position pos);
 
-
+	
 private:
 
 	Position m_Position;
