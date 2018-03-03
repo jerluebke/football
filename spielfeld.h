@@ -1,42 +1,28 @@
-#include <iostream>
-#include <chrono>
-#include "position.h"
-#include "ball.h"
-#include "tor.h"
-#include "spieler.h"
+#include<iostream>
+#include "Position.h"
+#include "Ball.h"
+#include "Tor.h"
+#include "Spieler.h"
 
-class Spielfeld
-{
+class Spielfeld {
 
 public:
 
-	Spielfeld(int breite, int laenge);
-    ~Spielfeld() { delete[] m_feld; }
+	Spielfeld();
 
-	void printSpielfeld();
+	void print_Spielfeld();
 
 	int get_breite() const;
 	int get_laenge() const;
-    void macheZug();
 
 private:
 
 	 int m_breite = 0;
 	 int m_laenge = 0;
 
-     unsigned char *m_feld;
+	 Ball ball(1,1);
+	 Spieler spieler(1, 1);
+	 Tor tor(1, 1);
 
-	 Ball m_ball;
-	 Spieler m_spieler;
-	 Tor m_tor;
- 
-
-     void updateSpielfeld();
-     bool m_beendet();
-     void m_beendeSpiel();
-
-     unsigned int m_index(const Position &pos);
-
-     // std::chrono::seconds m_oneSecondDelay(1000);
 
 };

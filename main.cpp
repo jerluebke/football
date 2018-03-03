@@ -1,8 +1,8 @@
 #include <iostream>
-#include <cstdio>   //for random number
-#include <cstdlib>
-#include <ctime>
-#include "spielfeld.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include "Spielfeld.h"
 
 
 int main() {
@@ -12,12 +12,8 @@ int main() {
 
 	std::cout << a << std::endl;*/
 
-	std::srand(std::time(NULL));
-	int breite = std::rand() % 10 + 5;
-	int laenge = std::rand() % 10 + 5;
-
-	Spielfeld A(breite, laenge);
-	A.macheZug();
+	Spielfeld A;
+	A.print_Spielfeld();
 
 	system("pause");
 	return 0;
