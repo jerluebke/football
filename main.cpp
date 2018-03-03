@@ -7,11 +7,6 @@
 
 int main() {
 
-	/*srand(time(NULL));
-	int a = rand() % 4 + 1;
-
-	std::cout << a << std::endl;*/
-
 	Spielfeld A;
 	A.print_Spielfeld();
 
