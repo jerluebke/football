@@ -14,7 +14,7 @@ public:
 	int get_posY() const;
 
 	bool operator==( const Position &pos) const;
-
+	
 
 private:
 
