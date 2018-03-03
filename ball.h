@@ -1,17 +1,27 @@
+
+#pragma once 
+
 #include <iostream>
-#include "Position.h"
+#include "position.h"
 
 class Ball {
 
 public:
 
-	Ball(int feldlaenge, int feldbreite);
+   Ball();
+	Ball(int feldlaenge,  int feldbreite);
 
-	Position get_pos() const;
 	void set_pos(const Position pos);
+    void set_posX(const int posX);
+    void set_poxY(const int posY);
 
-	
+    Position get_pos() const;
+	int get_posX() const;
+	int get_posY() const;
+
+
 private:
 
 	Position m_Position;
+
 };
