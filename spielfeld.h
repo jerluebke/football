@@ -1,5 +1,4 @@
 #include <iostream>
-#include <chrono>
 #include "position.h"
 #include "ball.h"
 #include "tor.h"
@@ -29,14 +28,12 @@ private:
 	 Ball m_ball;
 	 Spieler m_spieler;
 	 Tor m_tor;
- 
+
 
      void updateSpielfeld();
      bool m_beendet();
-     void m_beendeSpiel();
 
      unsigned int m_index(const Position &pos);
 
-     // std::chrono::seconds m_oneSecondDelay(1000);
 
 };

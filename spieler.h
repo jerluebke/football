@@ -30,8 +30,6 @@ class Spieler
 
         int m_schritte;
         int m_schuesse;
-        char m_letzteAktion = 0;  // Schritt oder Schuss? Für die Spielstatistik
-                                  // t, s
 
         bool m_amBall() const;
         void m_schiess(int direction);

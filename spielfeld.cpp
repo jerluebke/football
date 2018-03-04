@@ -2,8 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include <thread>
+#include <chrono>
+#include <cstring>
 #include "spielfeld.h"
 #include "ball.h"
+
+
+std::chrono::milliseconds oneSecondDelay(1000);
 
 
 Spielfeld::Spielfeld(int breite, int laenge) : m_breite(breite), m_laenge(laenge),
@@ -12,9 +17,6 @@ m_tor(m_breite, m_laenge), m_spieler(m_breite, m_laenge, &m_tor, &m_ball)
 {
 
     m_feld = new unsigned char[m_breite * m_laenge];
-    
-	
-	
 
     printSpielfeld();
 
@@ -43,14 +45,20 @@ void Spielfeld::macheZug()
 {
 	while (!m_beendet())
 	{
+        // adjust according to your system
+        // *nix: `clear`, win: `cls`
 		// system("cls");
+        system("clear");
 		m_spieler.tuEtwas();
 		updateSpielfeld();
 		printSpielfeld();
+
+        std::this_thread::sleep_for(oneSecondDelay);
 	}
 
-   // std::this_thread::sleep_for(m_oneSecondDelay);
-	m_beendeSpiel();
+	std::cout << "Statistik:\n";
+    std::cout << "\tSchuesse: " << m_spieler.getSchuesse();
+    std::cout << "\n\tSchritte: " << m_spieler.getSchritte() << std::endl;
 }
 
 bool Spielfeld::m_beendet()
@@ -59,12 +67,6 @@ bool Spielfeld::m_beendet()
 		if (m_ball.get_pos() == pos)
 			return true;
 	return false;
-}
-
-void Spielfeld::m_beendeSpiel()
-{
-    // system("cls");
-	std::cout << "Statistik:" << std::endl;
 }
 
 
@@ -83,14 +85,17 @@ void Spielfeld::updateSpielfeld()
 
 	for (Position &pos : m_tor.getPosition())
 		m_feld[m_index(pos)] = '#';
-    
+
 	if ((m_ball.get_pos() == m_spieler.getPos()))
     {
 		m_feld[m_index(m_ball.get_pos())] = '!';
 	}
 	else {
-		m_feld[m_index(m_ball.get_pos())] = 'o';
 		m_feld[m_index(m_spieler.getPos())] = 'I';
+        if (m_beendet())
+            m_feld[m_index(m_ball.get_pos())] = 'x';
+        else
+            m_feld[m_index(m_ball.get_pos())] = 'o';
 	}
 
 }

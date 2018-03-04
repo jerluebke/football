@@ -9,7 +9,7 @@
 
 Spieler::Spieler(){}
 
-Spieler::Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball) : 
+Spieler::Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball) :
 	m_pos(xmax, ymax)
 {
 	m_xmax = xmax;
@@ -20,23 +20,11 @@ Spieler::Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball) :
     m_ball = ball;
 
     m_setNaechsteTorPos = false;
+
+    m_schritte = 0;
+    m_schuesse = 0;
+
 }
-// 
-// Spieler::Spieler(Position pos, Tor *tor, Ball *ball)
-// {
-//     m_pos = pos;
-// 
-// 
-//     m_ballErreicht = false;
-//     m_tor = tor;
-//     m_ball = ball;
-//     m_ballPos = m_ball->get_pos();
-//     m_torPos = m_tor->getPosition();
-// 
-//     m_setNaechsteTorPos = false;
-// 
-// }
-// 
 
 //////////////////////////
 //  Public methodes     //
@@ -106,13 +94,9 @@ void Spieler::m_schiess(int direction)
         case 4: m_ball->set_posX(x+1);
                 break;
 
-        // default: std::cerr << "Bedingung: 0 < direction < 5"
-        //          << " - Etwas ist schiefgelaufen..." << std::endl;
-        //          break;
     }
     std::cout << "Schuss!" << std::endl;
     m_schuesse++;
-    m_letzteAktion = 's';
 }
 
 
@@ -134,13 +118,9 @@ void Spieler::m_geh(int direction)
         case 4: m_pos.set_posX(x+1);
                 break;
 
-        // default: std::cerr << "Bedingung: 0 < direction < 5"
-        //          << " - Etwas ist schiefgelaufen..." << std::endl;
-        //          break;
     }
     std::cout << "Schritt..." << std::endl;
     m_schritte++;
-    m_letzteAktion = 't';
 }
 
 
@@ -181,9 +161,9 @@ void Spieler::m_geheZumTor()
     else if (m_pos.get_posX() > m_naechsteTorPos.get_posX())
         direction = 2;
     else if (m_pos.get_posY() < m_naechsteTorPos.get_posY())
-        direction = 3;
-    else if (m_pos.get_posY() > m_naechsteTorPos.get_posY())
         direction = 1;
+    else if (m_pos.get_posY() > m_naechsteTorPos.get_posY())
+        direction = 3;
 
     if (m_amBall())
         m_schiess(direction);

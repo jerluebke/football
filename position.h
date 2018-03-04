@@ -1,7 +1,5 @@
 #pragma once
 
-// NOTIZ
-// ich habe `void get_position()` entfernt, da es mir redundant schien
 
 class Position {
 
