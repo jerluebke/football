@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include "position.h"
 #include "ball.h"
@@ -31,9 +33,9 @@ private:
 
 
      void updateSpielfeld();
-     bool m_beendet();
+     bool beendet();
 
-     unsigned int m_index(const Position &pos);
+     unsigned int index(const Position &pos);
 
 
 };

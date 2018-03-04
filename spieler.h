@@ -12,10 +12,10 @@ class Spieler
         Spieler();
         Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball);
 
-        Position getPos() const;
+        Position get_pos() const;
         void tuEtwas();
-        int getSchritte() const;
-        int getSchuesse() const;
+        int get_schritte() const;
+        int get_schuesse() const;
         bool get_ballErreicht() const;
 
 
@@ -33,12 +33,12 @@ class Spieler
         int m_schritte;
         int m_schuesse;
 
-        bool m_amBall() const;
-        void m_schiess(int direction);
-        void m_geh(int direction);
-        void m_geheZuBall();
-        void m_geheZuTor();
-        Position m_getNaechsteTorPos();
+        bool amBall() const;
+        void schiess(int direction);
+        void geh(int direction);
+        void geheZuBall();
+        void geheZuTor();
+        Position get_naechsteTorPos();
 
         int m_xmax, m_ymax;
 

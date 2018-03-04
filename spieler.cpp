@@ -31,30 +31,30 @@ Spieler::Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball) :
 //  Public methodes     //
 //////////////////////////
 
-Position Spieler::getPos() const
+Position Spieler::get_pos() const
 {
     return m_pos;
 }
 
 void Spieler::tuEtwas()
 {
-    if (!m_amBall())
-        m_geheZuBall();
+    if (!amBall())
+        geheZuBall();
     else
     {
         if (!m_ballErreicht)
             m_ballErreicht = true;
-        m_geheZuTor();
+        geheZuTor();
     }
 }
 
 
-int Spieler::getSchritte() const
+int Spieler::get_schritte() const
 {
     return m_schritte;
 }
 
-int Spieler::getSchuesse() const
+int Spieler::get_schuesse() const
 {
     return m_schuesse;
 }
@@ -76,13 +76,13 @@ bool Spieler::get_ballErreicht() const
 // |   1   |
 // +-------+
 
-bool Spieler::m_amBall() const
+bool Spieler::amBall() const
 {
     return (m_ball->get_pos() == this->m_pos);
 }
 
 
-void Spieler::m_schiess(int direction)
+void Spieler::schiess(int direction)
 {
     const int x = m_pos.get_posX();
     const int y = m_pos.get_posY();
@@ -106,7 +106,7 @@ void Spieler::m_schiess(int direction)
 }
 
 
-void Spieler::m_geh(int direction)
+void Spieler::geh(int direction)
 {
     const int x = m_pos.get_posX();
     const int y = m_pos.get_posY();
@@ -140,24 +140,24 @@ void Spieler::m_geh(int direction)
 // abwechselnd schießen und gehen
 
 
-void Spieler::m_geheZuBall()
+void Spieler::geheZuBall()
 {
     if (m_pos.get_posX() < m_ball->get_posX())
-        m_geh(4);
+        geh(4);
     else if (m_pos.get_posX() > m_ball->get_posX())
-        m_geh(2);
+        geh(2);
     else if (m_pos.get_posY() < m_ball->get_posY())
-        m_geh(1);
+        geh(1);
     else if (m_pos.get_posY() > m_ball->get_posY())
-        m_geh(3);
+        geh(3);
 }
 
 
-void Spieler::m_geheZuTor()
+void Spieler::geheZuTor()
 {
     if (!m_setNaechsteTorPos)
     {
-        m_naechsteTorPos = m_getNaechsteTorPos();
+        m_naechsteTorPos = get_naechsteTorPos();
         m_setNaechsteTorPos = true;
     }
 
@@ -192,18 +192,18 @@ void Spieler::m_geheZuTor()
             m_schauAufTorRichtungX = false;
     }
 
-    if (m_amBall())
-        m_schiess(direction);
+    if (amBall())
+        schiess(direction);
     else
-        m_geh(direction);
+        geh(direction);
 
 }
 
-Position Spieler::m_getNaechsteTorPos()
+Position Spieler::get_naechsteTorPos()
 {
     Position naechste;
 	double MINDISTANZ = m_xmax*m_xmax + m_ymax * m_ymax +1;
-    for (Position &currentPos : m_tor->getPosition())
+    for (Position &currentPos : m_tor->get_pos())
         if (m_pos.abstandQuadrat(currentPos) < MINDISTANZ)
         {
             naechste = currentPos;

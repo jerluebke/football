@@ -1,5 +1,4 @@
-
-#pragma once 
+#pragma once
 
 #include <iostream>
 #include "position.h"
@@ -8,7 +7,7 @@ class Ball {
 
 public:
 
-   Ball();
+    Ball();
 	Ball(int feldlaenge,  int feldbreite);
 
 	void set_pos(const Position pos);

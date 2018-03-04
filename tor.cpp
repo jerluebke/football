@@ -32,26 +32,26 @@ Tor::Tor(int xmax,  int ymax) : m_direction(0)
     switch (m_direction)
     {
         case 1 : startPos.set_posY(ymax-1);
-             start = m_setLocation(xmax);
-             stop = m_setLocation(xmax);
+             start = make_location(xmax);
+             stop = make_location(xmax);
              length = static_cast<int> (abs(start-stop))+1;
              location = std::min(start, stop);
              break;
         case 2 : startPos.set_posX(0);
-			start = m_setLocation(ymax);
-			stop = m_setLocation(ymax);
+			start = make_location(ymax);
+			stop = make_location(ymax);
 			length = static_cast<int> (abs(start - stop)) + 1;
 			location = std::min(start, stop);
 			break;
         case 3 : startPos.set_posY(0);
-			start = m_setLocation(xmax);
-			stop = m_setLocation(xmax);
+			start = make_location(xmax);
+			stop = make_location(xmax);
 			length = static_cast<int> (abs(start - stop)) + 1;
 			location = std::min(start, stop);
 			break;
         case 4 : startPos.set_posX(xmax-1);
-			start = m_setLocation(ymax);
-			stop = m_setLocation(ymax);
+			start = make_location(ymax);
+			stop = make_location(ymax);
 			length = static_cast<int> (abs(start - stop)) + 1;
 			location = std::min(start, stop);
 			break;
@@ -74,7 +74,7 @@ Tor::Tor(int xmax,  int ymax) : m_direction(0)
     }
 }
 
-std::vector<Position> Tor::getPosition() const
+std::vector<Position> Tor::get_pos() const
 {
     return m_pos;
 }
@@ -86,13 +86,7 @@ int Tor::get_direction() const
 }
 
 
-int Tor::m_setLocation(const int bound)
+int Tor::make_location(const int bound)
 {
     return (rand() % bound);
-}
-
-int Tor::m_setLength(const int globalBound, const int location)
-{
-
-	return (rand() % (globalBound  - location))+1;
 }

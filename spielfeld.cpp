@@ -43,7 +43,7 @@ void Spielfeld::printSpielfeld()
 
 void Spielfeld::macheZug()
 {
-	while (!m_beendet())
+	while (!beendet())
 	{
         // adjust according to your system
         // *nix: `clear`, win: `cls`
@@ -65,21 +65,21 @@ void Spielfeld::macheZug()
 	}
 
 	std::cout << "Statistik:\n";
-    std::cout << "\tSchuesse: " << m_spieler.getSchuesse();
-    std::cout << "\n\tSchritte: " << m_spieler.getSchritte();
+    std::cout << "\tSchuesse: " << m_spieler.get_schuesse();
+    std::cout << "\n\tSchritte: " << m_spieler.get_schritte();
     std::cout << "\n" << std::endl;
 }
 
-bool Spielfeld::m_beendet()
+bool Spielfeld::beendet()
 {
-	for (Position &pos : m_tor.getPosition())
+	for (Position &pos : m_tor.get_pos())
 		if (m_ball.get_pos() == pos)
 			return true;
 	return false;
 }
 
 
-unsigned int Spielfeld::m_index(const Position &pos)
+unsigned int Spielfeld::index(const Position &pos)
 {
     unsigned int x = static_cast<unsigned int> (pos.get_posX());
     unsigned int y = static_cast<unsigned int> (pos.get_posY());
@@ -92,19 +92,19 @@ void Spielfeld::updateSpielfeld()
 {
 	memset(m_feld, '-', m_breite*m_laenge);
 
-	for (Position &pos : m_tor.getPosition())
-		m_feld[m_index(pos)] = '#';
+	for (Position &pos : m_tor.get_pos())
+		m_feld[index(pos)] = '#';
 
-	if ((m_ball.get_pos() == m_spieler.getPos()))
+	if ((m_ball.get_pos() == m_spieler.get_pos()))
     {
-		m_feld[m_index(m_ball.get_pos())] = '!';
+		m_feld[index(m_ball.get_pos())] = '!';
 	}
 	else {
-		m_feld[m_index(m_spieler.getPos())] = 'I';
-        if (m_beendet())
-            m_feld[m_index(m_ball.get_pos())] = 'x';
+		m_feld[index(m_spieler.get_pos())] = 'I';
+        if (beendet())
+            m_feld[index(m_ball.get_pos())] = 'x';
         else
-            m_feld[m_index(m_ball.get_pos())] = 'o';
+            m_feld[index(m_ball.get_pos())] = 'o';
 	}
 
 }
