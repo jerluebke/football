@@ -11,15 +11,14 @@
 std::chrono::milliseconds oneSecondDelay(100);
 
 
-Spielfeld::Spielfeld(int breite, int laenge) : m_breite(breite), m_laenge(laenge),
-m_feld(nullptr) , m_ball(m_breite, m_laenge),
-m_tor(m_breite, m_laenge), m_spieler(m_breite, m_laenge, &m_tor, &m_ball)
+Spielfeld::Spielfeld(int breite, int laenge, char sys='l')
+ : m_breite(breite), m_laenge(laenge), m_sys(sys),
+    m_feld(nullptr) , m_ball(m_breite, m_laenge),
+    m_tor(m_breite, m_laenge), m_spieler(m_breite, m_laenge, &m_tor, &m_ball)
 {
-
     m_feld = new unsigned char[m_breite * m_laenge];
 
     printSpielfeld();
-
 }
 
 int Spielfeld::get_breite() const { return m_breite; }
@@ -47,8 +46,10 @@ void Spielfeld::macheZug()
 	{
         // adjust according to your system
         // *nix: `clear`, win: `cls`
-        // system("cls");
-        system("clear");
+        if (m_sys == 'w')
+            system("cls");
+        else
+            system("clear");
 		m_spieler.tuEtwas();
 		updateSpielfeld();
 		printSpielfeld();

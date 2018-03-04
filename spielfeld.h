@@ -11,7 +11,7 @@ class Spielfeld
 
 public:
 
-	Spielfeld(int breite, int laenge);
+	Spielfeld(int breite, int laenge, char sys);
     ~Spielfeld() { delete[] m_feld; }
 
 	void printSpielfeld();
@@ -21,6 +21,8 @@ public:
     void macheZug();
 
 private:
+
+     char m_sys;
 
 	 int m_breite = 0;
 	 int m_laenge = 0;

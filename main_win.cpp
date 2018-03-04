@@ -11,7 +11,7 @@ int main() {
 	int breite = std::rand() % 30 + 20;
 	int laenge = std::rand() % 30 + 20;
 
-	Spielfeld A(breite, laenge);
+	Spielfeld A(breite, laenge, 'w');
 	A.macheZug();
 
 	// system("pause");
