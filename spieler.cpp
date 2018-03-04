@@ -15,10 +15,11 @@ Spieler::Spieler(const int xmax, const int ymax, Tor *tor, Ball *ball) :
 	m_xmax = xmax;
 	m_ymax = ymax;
 
-	m_ballErreicht = false;
     m_tor = tor;
     m_ball = ball;
 
+	m_ballErreicht = false;
+    m_schauAufTorRichtungX = (m_tor->get_direction() % 2 == 0) ? true : false;
     m_setNaechsteTorPos = false;
 
     m_schritte = 0;
@@ -43,7 +44,7 @@ void Spieler::tuEtwas()
     {
         if (!m_ballErreicht)
             m_ballErreicht = true;
-        m_geheZumTor();
+        m_geheZuTor();
     }
 }
 
@@ -56,6 +57,11 @@ int Spieler::getSchritte() const
 int Spieler::getSchuesse() const
 {
     return m_schuesse;
+}
+
+bool Spieler::get_ballErreicht() const
+{
+    return m_ballErreicht;
 }
 
 
@@ -147,7 +153,7 @@ void Spieler::m_geheZuBall()
 }
 
 
-void Spieler::m_geheZumTor()
+void Spieler::m_geheZuTor()
 {
     if (!m_setNaechsteTorPos)
     {
@@ -156,14 +162,35 @@ void Spieler::m_geheZumTor()
     }
 
     int direction;
-    if (m_pos.get_posX() < m_naechsteTorPos.get_posX())
-        direction = 4;
-    else if (m_pos.get_posX() > m_naechsteTorPos.get_posX())
-        direction = 2;
-    else if (m_pos.get_posY() < m_naechsteTorPos.get_posY())
-        direction = 1;
-    else if (m_pos.get_posY() > m_naechsteTorPos.get_posY())
-        direction = 3;
+    int torPosX = m_naechsteTorPos.get_posX();
+    int torPosY = m_naechsteTorPos.get_posY();
+    // Idee bei diesem Konstrukt:
+    // gehe erst so, dass der Spieler auf das Tor schaut
+    // und dann gehe auf das Tor zu
+    // Der Ball soll nicht "seitlich" in das Tor gespielt werden
+    // TODO:
+    // ist das Tor rechts oder links, verhält sich das Spiel wie gewünscht
+    // ist das Tor oben oder unten, funktioniert es nicht
+    if (!m_schauAufTorRichtungX)
+    {
+        int currentPosX = m_pos.get_posX();
+        if (currentPosX < torPosX)
+            direction = 4;
+        else if (currentPosX > torPosX)
+            direction = 2;
+        else    // currentPosX == torPosX
+            m_schauAufTorRichtungX = true;
+    }
+    if (m_schauAufTorRichtungX)
+    {
+        int currentPosY = m_pos.get_posY();
+        if (currentPosY < torPosY)
+            direction = 1;
+        else if (currentPosY > torPosY)
+            direction = 3;
+        else    // currentPosY == torPosY
+            m_schauAufTorRichtungX = false;
+    }
 
     if (m_amBall())
         m_schiess(direction);

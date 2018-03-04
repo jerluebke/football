@@ -16,17 +16,19 @@ class Spieler
         void tuEtwas();
         int getSchritte() const;
         int getSchuesse() const;
+        bool get_ballErreicht() const;
 
 
     private:
-
-        bool m_ballErreicht;
 
         Position m_pos;
         Tor* m_tor;
         Ball* m_ball;
         Position m_naechsteTorPos;
+
+        bool m_ballErreicht;
         bool m_setNaechsteTorPos;
+        bool m_schauAufTorRichtungX;
 
         int m_schritte;
         int m_schuesse;
@@ -35,7 +37,7 @@ class Spieler
         void m_schiess(int direction);
         void m_geh(int direction);
         void m_geheZuBall();
-        void m_geheZumTor();
+        void m_geheZuTor();
         Position m_getNaechsteTorPos();
 
         int m_xmax, m_ymax;

@@ -47,18 +47,27 @@ void Spielfeld::macheZug()
 	{
         // adjust according to your system
         // *nix: `clear`, win: `cls`
-		// system("cls");
+        // system("cls");
         system("clear");
 		m_spieler.tuEtwas();
 		updateSpielfeld();
 		printSpielfeld();
 
         std::this_thread::sleep_for(oneSecondDelay);
+        // wenn der Ball erreicht wurde, verkürze die Wartezeit zwischen den
+        // Zügen für eine flüssigere Darstellung
+        //
+        // TODO:
+        // Artefakte bei der Darstellung
+        //
+        // if (!m_spieler.get_ballErreicht())
+        //     std::this_thread::sleep_for(oneSecondDelay);
 	}
 
 	std::cout << "Statistik:\n";
     std::cout << "\tSchuesse: " << m_spieler.getSchuesse();
-    std::cout << "\n\tSchritte: " << m_spieler.getSchritte() << std::endl;
+    std::cout << "\n\tSchritte: " << m_spieler.getSchritte();
+    std::cout << "\n" << std::endl;
 }
 
 bool Spielfeld::m_beendet()

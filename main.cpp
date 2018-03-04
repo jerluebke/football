@@ -7,11 +7,6 @@
 
 int main() {
 
-	/*srand(time(NULL));
-	int a = rand() % 4 + 1;
-
-	std::cout << a << std::endl;*/
-
 	std::srand(std::time(NULL));
 	int breite = std::rand() % 30 + 20;
 	int laenge = std::rand() % 30 + 20;
@@ -19,6 +14,6 @@ int main() {
 	Spielfeld A(breite, laenge);
 	A.macheZug();
 
-	system("pause");
+	// system("pause");
 	return 0;
 }
