@@ -13,8 +13,8 @@ int main() {
 	std::cout << a << std::endl;*/
 
 	std::srand(std::time(NULL));
-	int breite = std::rand() % 10 + 5;
-	int laenge = std::rand() % 10 + 5;
+	int breite = std::rand() % 30 + 20;
+	int laenge = std::rand() % 30 + 20;
 
 	Spielfeld A(breite, laenge);
 	A.macheZug();

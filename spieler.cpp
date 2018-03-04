@@ -175,9 +175,12 @@ void Spieler::m_geheZumTor()
 Position Spieler::m_getNaechsteTorPos()
 {
     Position naechste;
-	double MAXDISTANZ = m_xmax*m_xmax + m_ymax * m_ymax +1;
+	double MINDISTANZ = m_xmax*m_xmax + m_ymax * m_ymax +1;
     for (Position &currentPos : m_tor->getPosition())
-        if (m_pos.abstandQuadrat(currentPos) < MAXDISTANZ)
+        if (m_pos.abstandQuadrat(currentPos) < MINDISTANZ)
+        {
             naechste = currentPos;
+            MINDISTANZ = m_pos.abstandQuadrat(currentPos);
+        }
     return naechste;
 }

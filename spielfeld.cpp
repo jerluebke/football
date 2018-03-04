@@ -8,7 +8,7 @@
 #include "ball.h"
 
 
-std::chrono::milliseconds oneSecondDelay(1000);
+std::chrono::milliseconds oneSecondDelay(100);
 
 
 Spielfeld::Spielfeld(int breite, int laenge) : m_breite(breite), m_laenge(laenge),
